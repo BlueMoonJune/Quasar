@@ -1,0 +1,10 @@
+{
+  "type": "quasar:space",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [],
+      "biome": "quasar:space"
+    }
+  }
+}
