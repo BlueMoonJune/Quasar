@@ -1,0 +1,5 @@
+{
+  "block.quasar.tether.attach": "Attached tether",
+  "block.quasar.tether.detach": "Detached tether",
+  "block.quasar.tether.failed": "This tether is attached to another player"
+}

@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "quasar:block/tether_spool",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "quasar:block/tether_spool",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "quasar:block/tether_spool",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "quasar:block/tether_spool",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "quasar:block/tether_spool",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "quasar:block/tether_spool",
+      "x": 90
+    },
+    "core": {
+      "model": "quasar:block/tether_spool_core"
+    }
+  }
+}

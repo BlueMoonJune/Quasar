@@ -1,11 +1,14 @@
 {
-	"required": true,
-	"package": "bluemoonjune.quasar.mixin.client",
-	"compatibilityLevel": "JAVA_21",
-	"client": [
-		"ExampleClientMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "bluemoonjune.quasar.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "BackgroundRendererMixin",
+    "CameraMixin",
+    "KeyboardInputMixin",
+    "MouseMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

@@ -1,19 +1,40 @@
 package bluemoonjune.quasar.entity
 
+import com.google.common.collect.Maps
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import net.minecraft.block.Block
 import net.minecraft.block.BlockState
+import net.minecraft.block.entity.BlockEntity
+import net.minecraft.component.type.MapIdComponent
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.data.DataTracker
-import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
+import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.fluid.Fluid
+import net.minecraft.item.map.MapState
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtHelper
 import net.minecraft.nbt.NbtList
-import net.minecraft.registry.RegistryEntryLookup
+import net.minecraft.recipe.BrewingRecipeRegistry
+import net.minecraft.recipe.RecipeManager
 import net.minecraft.registry.RegistryKeys
+import net.minecraft.registry.entry.RegistryEntry
+import net.minecraft.resource.featuretoggle.FeatureSet
+import net.minecraft.scoreboard.Scoreboard
+import net.minecraft.sound.SoundCategory
+import net.minecraft.sound.SoundEvent
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
+import net.minecraft.util.math.Vec3d
+import net.minecraft.world.MutableWorldProperties
 import net.minecraft.world.World
-import java.util.HashMap
+import net.minecraft.world.biome.Biome
+import net.minecraft.world.chunk.ChunkManager
+import net.minecraft.world.entity.EntityLookup
+import net.minecraft.world.event.GameEvent
+import net.minecraft.world.tick.QueryableTickScheduler
+import net.minecraft.world.tick.TickManager
 
 class Rocket(type: EntityType<Rocket>, world: World) : Entity(type, world) {
 
@@ -80,4 +101,170 @@ class Rocket(type: EntityType<Rocket>, world: World) : Entity(type, world) {
     companion object {
         val SYNCED = DataTracker.registerData(Rocket::class.java, TrackedDataHandlerRegistry.NBT_COMPOUND)
     }
+
+//    class Shell(
+//        val rocket: Rocket,
+//    ) : net.minecraft.world.World(
+//        (rocket.world.levelProperties) as MutableWorldProperties,
+//        rocket.world.registryKey,
+//        rocket.world.registryManager,
+//        rocket.world.dimensionEntry,
+//        rocket.world.profilerSupplier,
+//        rocket.world.isClient,
+//        rocket.world.isDebugWorld,
+//        0,
+//        2048
+//    ) {
+//
+//        val blockStates = HashMap<BlockPos, BlockState>()
+//        val blockEntityNbts = HashMap<BlockPos, NbtCompound>()
+//        val blockEntities = HashMap<BlockPos, BlockEntity>()
+//
+////        fun writeNbt(): NbtCompound {
+////            val tag = NbtCompound()
+////            blockStates
+////                .filterNot { (key, value) -> value.isAir() }
+////                .toList().fold( NbtList(), {
+////                    i, (pos, state) ->
+////                    val entry = NbtCompound()
+////                    entry.put("pos", NbtHelper.fromBlockPos(pos))
+////                    entry.put("state", NbtHelper.fromBlockState(state))
+////                    if (blockEntities.containsKey(pos)) {
+////                        val entity = blockEntities[pos]
+////                        entry.put("entity", entity.)
+////                    }
+////                    i.add(entry)
+////                    i
+////                })
+////        }
+//
+//        override fun updateListeners(
+//            pos: BlockPos?,
+//            oldState: BlockState?,
+//            newState: BlockState?,
+//            flags: Int
+//        ) {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun playSound(
+//            source: PlayerEntity?,
+//            x: Double,
+//            y: Double,
+//            z: Double,
+//            sound: RegistryEntry<SoundEvent?>?,
+//            category: SoundCategory?,
+//            volume: Float,
+//            pitch: Float,
+//            seed: Long
+//        ) {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun playSoundFromEntity(
+//            source: PlayerEntity?,
+//            entity: Entity?,
+//            sound: RegistryEntry<SoundEvent?>?,
+//            category: SoundCategory?,
+//            volume: Float,
+//            pitch: Float,
+//            seed: Long
+//        ) {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun asString(): String = "Rocket:%s Shell".format(rocket.uuidAsString)
+//
+//        override fun getEntityById(id: Int): Entity? {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun getTickManager(): TickManager? {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun getMapState(id: MapIdComponent?): MapState? {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun putMapState(
+//            id: MapIdComponent?,
+//            state: MapState?
+//        ) {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun increaseAndGetMapId(): MapIdComponent? {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun setBlockBreakingInfo(
+//            entityId: Int,
+//            pos: BlockPos?,
+//            progress: Int
+//        ) {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun getScoreboard(): Scoreboard? {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun getRecipeManager(): RecipeManager? {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun getEntityLookup(): EntityLookup<Entity?>? {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun getBrewingRecipeRegistry(): BrewingRecipeRegistry? {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun getBlockTickScheduler(): QueryableTickScheduler<Block?>? {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun getFluidTickScheduler(): QueryableTickScheduler<Fluid?>? {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun getChunkManager(): ChunkManager? {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun syncWorldEvent(
+//            player: PlayerEntity?,
+//            eventId: Int,
+//            pos: BlockPos?,
+//            data: Int
+//        ) {
+//
+//        }
+//
+//        override fun emitGameEvent(
+//            event: RegistryEntry<GameEvent?>?,
+//            emitterPos: Vec3d?,
+//            emitter: GameEvent.Emitter?
+//        ) {
+//
+//        }
+//
+//        override fun getPlayers(): List<PlayerEntity?> = arrayListOf()
+//
+//        override fun getGeneratorStoredBiome(
+//            biomeX: Int,
+//            biomeY: Int,
+//            biomeZ: Int
+//        ): RegistryEntry<Biome?>? = null
+//
+//        override fun getEnabledFeatures(): FeatureSet = FeatureSet.empty()
+//
+//        override fun getBrightness(
+//            direction: Direction?,
+//            shaded: Boolean
+//        ): Float = 1f
+//
+//    }
 }

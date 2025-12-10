@@ -12,8 +12,11 @@ import net.minecraft.world.dimension.DimensionType
 object ModEntities {
 
     val ROCKET : EntityType<Rocket> = register("rocket",
-        EntityType.Builder.create<Rocket>(::Rocket, SpawnGroup.MISC).build()!!
+        EntityType.Builder.create(::Rocket, SpawnGroup.MISC).build()!!
         )
+    val SEAT : EntityType<SeatEntity> = register("seat",
+        EntityType.Builder.create(::SeatEntity, SpawnGroup.MISC).dimensions(0.5f, 0.5f).build()!!
+    )
 
     private fun <T : EntityType<E>, E: Entity> register(name: String, entity: T): T {
         return Registry.register(Registries.ENTITY_TYPE, Quasar.id(name), entity)

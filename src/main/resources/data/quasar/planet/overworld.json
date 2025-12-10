@@ -1,0 +1,24 @@
+{
+  "dimension": "minecraft:overworld",
+  "parent": "quasar:sun",
+  "radius": 640000,
+  "tilt": 0,
+  "gravity": 3200,
+  "atmosphere" : {
+    "layers": 5,
+    "height": 80000,
+    "color" : [
+      0.04,
+      0.16,
+      0.4
+    ]
+  },
+  "orbit": {
+    "ecc": 0,
+    "sma": 150000000,
+    "inc": 0,
+    "lan": 0,
+    "argp": 0,
+    "epoch": 0
+  }
+}

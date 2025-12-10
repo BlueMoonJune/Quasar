@@ -1,0 +1,14 @@
+{
+  "model": "quasar:planet/sun",
+  "radius": 7000000,
+  "gravity": 896,
+  "atmosphere" : {
+    "layers": 10,
+    "height": 2800000,
+    "color" : [
+      0.2,
+      0.175,
+      0.1
+    ]
+  }
+}

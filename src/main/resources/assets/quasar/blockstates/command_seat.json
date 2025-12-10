@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "quasar:block/command_seat"
+    },
+    "facing=north": {
+      "model": "quasar:block/command_seat",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "quasar:block/command_seat",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "quasar:block/command_seat",
+      "y": 90
+    }
+  }
+}
