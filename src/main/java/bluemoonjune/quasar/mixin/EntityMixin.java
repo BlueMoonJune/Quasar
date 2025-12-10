@@ -21,39 +21,11 @@ public abstract class EntityMixin implements OrientableEntity {
     @Shadow
     public abstract World getWorld();
 
-    @Unique
-    public Quaternionf quasar$orientation = new Quaternionf();
-
     @WrapMethod(method = "hasNoGravity")
     private boolean modifyGravity(Operation<Boolean> original) {
         if (Utils.INSTANCE.hasGravity((Entity)(Object) this)) {
             return true;
         }
         return original.call();
-    }
-
-    @WrapMethod(method = "getBoundingBox")
-    private Box modifyBoundingBox(Operation<Box> original) {
-        if (Utils.INSTANCE.hasGravity((Entity)(Object) this)) {
-            return Quasar.INSTANCE.hitboxTest(original.call());
-        }
-        return original.call();
-    }
-
-    @WrapMethod(method = "getEyePos")
-    private Vec3d modifyEyePos(Operation<Vec3d> original) {
-        var v = original.call();
-        var c = ((Entity)(Object) this).getBoundingBox().getCenter();
-        return new Vec3d(v.subtract(c).toVector3f().rotate(quasar$orientation)).add(c);
-    }
-
-    @Override
-    public @NotNull Quaternionf getOrientation() {
-        return this.quasar$orientation;
-    }
-
-    @Override
-    public void setOrientation(@NotNull Quaternionf quaternionf) {
-        this.quasar$orientation = quaternionf;
     }
 }

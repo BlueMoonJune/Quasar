@@ -35,9 +35,6 @@ object QuasarClient : ClientModInitializer {
 
     val PLANET_MODELS : Map<Identifier, BakedModel> = HashMap<Identifier, BakedModel>()
 
-    lateinit var ROLL_KEYBIND : KeyBinding
-    val KEYBIND_CATEGORY = "key.categories.quasar"
-
 	override fun onInitializeClient() {
         EntityRendererRegistry.register(ModEntities.ROCKET, ::RocketRenderer)
         EntityRendererRegistry.register(ModEntities.SEAT, ::SeatEntityRenderer)
@@ -51,13 +48,6 @@ object QuasarClient : ClientModInitializer {
         Jetpack.behavior = JetpackBehaviorImpl()
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TETHER_SPOOL, RenderLayer.getCutout())
-
-        ROLL_KEYBIND = KeyBindingHelper.registerKeyBinding(KeyBinding(
-            "key.quasar.roll",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_R,
-            KEYBIND_CATEGORY
-        ))
 
         ModelLoadingPluginManager.registerPlugin {
             context ->
